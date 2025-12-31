@@ -1,6 +1,6 @@
 import TodoItem from './TodoItems';
 
-function TodoList({ todos, toggleComplete, deleteTodo }) {
+function TodoList({ todos, toggleComplete, deleteTodo, editTodo, categories }) {
     return (
         <div className="todo-list">
             {todos.length === 0 ? (
@@ -12,6 +12,8 @@ function TodoList({ todos, toggleComplete, deleteTodo }) {
                         todo={todo}
                         toggleComplete={toggleComplete}
                         deleteTodo={deleteTodo}
+                        editTodo={editTodo}
+                        categories={categories}
                     />
                 ))
             )}

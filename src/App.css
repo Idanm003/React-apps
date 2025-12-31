@@ -15,7 +15,7 @@ body {
 
 /* Main app container - white card in center */
 .App {
-  max-width: 700px;
+  max-width: 850px;
   margin: 50px auto;
   background: white;
   border-radius: 20px;
@@ -235,6 +235,56 @@ button:active {
   background: #4caf50;
 }
 
+/* Date picker */
+.date-picker {
+  padding: 12px 15px;
+  border: 2px solid #e1bee7;
+  border-radius: 10px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.date-picker:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+/* Due date badge */
+.due-date-badge {
+  padding: 5px 12px;
+  background: #2196f3;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Overdue badge */
+.overdue-badge {
+  background: #ff5722;
+  animation: pulse 2s infinite;
+}
+
+/* Overdue todo item */
+.todo-item.overdue {
+  border-left: 4px solid #ff5722;
+}
+
+/* Pulse animation for overdue items */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
 /* Todo list container */
 .todo-list {
   margin-bottom: 10px;
@@ -244,13 +294,14 @@ button:active {
 .todo-item {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   padding: 15px;
   background: linear-gradient(135deg, #f1faee 0%, #faf5ff 100%);
   border-radius: 10px;
   margin-bottom: 10px;
   transition: background 0.3s;
   border: 1px solid #e1bee7;
+  flex-wrap: wrap;
 }
 
 /* Todo item hover effect */
@@ -294,6 +345,88 @@ button:active {
   background: #b71c1c;
 }
 
+/* Edit input in todo item */
+.edit-input {
+  flex: 1;
+  min-width: 150px;
+  padding: 8px 12px;
+  border: 2px solid #6a1b9a;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+/* Edit category select */
+.edit-category-select {
+  padding: 8px 10px;
+  border: 2px solid #6a1b9a;
+  border-radius: 8px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+  min-width: 90px;
+}
+
+.edit-category-select:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+/* Edit priority select */
+.edit-priority-select {
+  padding: 8px 10px;
+  border: 2px solid #6a1b9a;
+  border-radius: 8px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+  min-width: 90px;
+}
+
+.edit-priority-select:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+/* Edit button */
+.edit-btn {
+  padding: 8px 15px;
+  background: #2196f3;
+  font-size: 14px;
+}
+
+.edit-btn:hover {
+  background: #1976d2;
+}
+
+/* Save button */
+.save-btn {
+  padding: 8px 15px;
+  background: #4caf50;
+  font-size: 14px;
+}
+
+.save-btn:hover {
+  background: #388e3c;
+}
+
+/* Cancel button */
+.cancel-btn {
+  padding: 8px 15px;
+  background: #6c757d;
+  font-size: 14px;
+}
+
+.cancel-btn:hover {
+  background: #495057;
+  opacity: 1;
+}
+
 /* General paragraph styling */
 p {
   text-align: center;
@@ -312,14 +445,14 @@ p {
 }
 
 /* Clear all todos button */
-.App > button:last-of-type {
+.App>button:last-of-type {
   display: block;
   margin: 10px auto 0;
   background: #d32f2f;
 }
 
 /* Clear all button hover */
-.App > button:last-of-type:hover {
+.App>button:last-of-type:hover {
   background: #b71c1c;
   opacity: 1;
 }
@@ -451,6 +584,13 @@ body.dark-mode {
   color: #999;
 }
 
+.App.dark-mode .date-picker {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+  color-scheme: dark;
+}
+
 .App.dark-mode .search-input {
   background: #2d2d2d;
   border-color: #6a1b9a;
@@ -475,6 +615,24 @@ body.dark-mode {
 }
 
 .App.dark-mode .sort-select {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+.App.dark-mode .edit-input {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+.App.dark-mode .edit-category-select {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+.App.dark-mode .edit-priority-select {
   background: #2d2d2d;
   border-color: #6a1b9a;
   color: #e0e0e0;
@@ -538,4 +696,28 @@ body.dark-mode {
 
 .App.dark-mode .category-inline-input::placeholder {
   color: #999;
+}
+
+/* Edit date picker */
+.edit-date-picker {
+  padding: 8px 10px;
+  border: 2px solid #6a1b9a;
+  border-radius: 8px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+  min-width: 130px;
+}
+
+.edit-date-picker:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+/* Dark mode edit date picker */
+.App.dark-mode .edit-date-picker {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+  color-scheme: dark;
 }

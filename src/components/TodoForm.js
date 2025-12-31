@@ -4,6 +4,10 @@ function TodoForm(props) {
     const [text, setText] = useState("");
     const [category, setCategory] = useState(props.categories[0]);
     const [priority, setPriority] = useState("Medium");
+    const [dueDate, setDueDate] = useState("");
+
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -13,16 +17,17 @@ function TodoForm(props) {
             return;
         }
 
-        props.addTodo(text, category, priority);
+        props.addTodo(text, category, priority, dueDate);
         setText("");
         setPriority("Medium");
+        setDueDate("");
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                placeholder="Add a new task"
+                placeholder="Add a new task..."
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
@@ -38,6 +43,14 @@ function TodoForm(props) {
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
             </select>
+
+            <input
+                type="date"
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
+                min={today}
+                className="date-picker"
+            />
 
             <button type="submit">Add</button>
         </form>

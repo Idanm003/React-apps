@@ -9,18 +9,15 @@ function App() {
     const savedTodos = localStorage.getItem('todos');
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
-
   const [filter, setFilter] = useState('All');
   const [categories, setCategories] = useState(() => {
     const savedCategories = localStorage.getItem('categories');
     return savedCategories ? JSON.parse(savedCategories) : ['Personal', 'Work', 'Gaming'];
   });
-
   const [darkMode, setDarkMode] = useState(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
     return savedDarkMode ? JSON.parse(savedDarkMode) : false;
   });
-
   const [searchText, setSearchText] = useState('');
   const [sortBy, setSortBy] = useState('dateCreated');
 
@@ -44,12 +41,13 @@ function App() {
     }
   }, [darkMode]);
 
-  const addTodo = (text, category, priority) => {
+  const addTodo = (text, category, priority, dueDate) => {
     const newTodo = {
       id: Date.now(),
       text: text,
       category: category,
       priority: priority,
+      dueDate: dueDate,
       completed: false
     };
     setTodos([...todos, newTodo]);
@@ -63,6 +61,12 @@ function App() {
 
   const deleteTodo = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  const editTodo = (id, newText, newCategory, newPriority, newDueDate) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, text: newText, category: newCategory, priority: newPriority, dueDate: newDueDate } : todo
+    ));
   };
 
   const addCategory = (newCategory) => {
@@ -107,7 +111,6 @@ function App() {
       const matchesSearch = todo.text.toLowerCase().includes(searchText.toLowerCase());
       return matchesCategory && matchesSearch;
     })
-
     .sort((a, b) => {
       switch (sortBy) {
         case 'dateCreated':
@@ -128,6 +131,16 @@ function App() {
           return a.completed - b.completed;
         case 'completedFirst':
           return b.completed - a.completed;
+        case 'dueDateSoonest':
+          if (!a.dueDate && !b.dueDate) return 0;
+          if (!a.dueDate) return 1;
+          if (!b.dueDate) return -1;
+          return new Date(a.dueDate) - new Date(b.dueDate);
+        case 'dueDateLatest':
+          if (!a.dueDate && !b.dueDate) return 0;
+          if (!a.dueDate) return 1;
+          if (!b.dueDate) return -1;
+          return new Date(b.dueDate) - new Date(a.dueDate);
         default:
           return 0;
       }
@@ -140,14 +153,11 @@ function App() {
           {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
         </button>
       </div>
-
       <h1>My To-Do List</h1>
-      
       <TodoForm
         addTodo={addTodo}
         categories={categories}
       />
-
       <FilterButtons
         filter={filter}
         setFilter={setFilter}
@@ -155,23 +165,20 @@ function App() {
         deleteCategory={deleteCategory}
         addCategory={addCategory}
       />
-
       <div className="search-container">
         <input
           type="text"
-          placeholder="🔍 Search todos"
+          placeholder="🔍 Search todos..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
           className="search-input"
         />
-
         {searchText && (
           <button onClick={() => setSearchText('')} className="clear-search">
             ✕
           </button>
         )}
       </div>
-
       <div className="sort-container">
         <label>Sort by: </label>
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="sort-select">
@@ -183,15 +190,17 @@ function App() {
           <option value="priorityLowHigh">Priority (Low to High)</option>
           <option value="completed">Status (Incomplete First)</option>
           <option value="completedFirst">Status (Completed First)</option>
+          <option value="dueDateSoonest">Due Date (Soonest)</option>
+          <option value="dueDateLatest">Due Date (Latest)</option>
         </select>
       </div>
-
       <TodoList
         todos={filteredTodos}
         toggleComplete={toggleComplete}
         deleteTodo={deleteTodo}
+        editTodo={editTodo}
+        categories={categories}
       />
-
       <p>Todos: {todos.length}</p>
       <button onClick={clearAllTodos}>Clear All Todos</button>
     </div>
