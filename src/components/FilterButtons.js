@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function FilterButtons({ filter, setFilter, categories, deleteCategory, addCategory }) {
     const allCategories = ['All', ...categories];
-    const defaultCategories = ['Personal', 'Work', 'Gaming'];
+    const defaultCategories = ['Personal', 'Work'];
     const [showNewCategory, setShowNewCategory] = useState(false);
     const [newCategory, setNewCategory] = useState("");
 

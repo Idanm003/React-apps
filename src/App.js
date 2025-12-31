@@ -12,7 +12,7 @@ function App() {
   const [filter, setFilter] = useState('All');
   const [categories, setCategories] = useState(() => {
     const savedCategories = localStorage.getItem('categories');
-    return savedCategories ? JSON.parse(savedCategories) : ['Personal', 'Work', 'Gaming'];
+    return savedCategories ? JSON.parse(savedCategories) : ['Personal', 'Work'];
   });
   const [darkMode, setDarkMode] = useState(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
