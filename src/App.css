@@ -1,3 +1,5 @@
+/* ==================== RESET & GLOBAL STYLES ==================== */
+
 /* Reset default browser styles */
 * {
   margin: 0;
@@ -13,9 +15,12 @@ body {
   padding: 20px;
 }
 
+/* ==================== MAIN APP CONTAINER ==================== */
+
 /* Main app container - white card in center */
 .App {
   max-width: 850px;
+  /* Wider to accommodate edit mode */
   margin: 50px auto;
   background: white;
   border-radius: 20px;
@@ -28,6 +33,8 @@ body {
   position: relative;
 }
 
+/* ==================== TYPOGRAPHY ==================== */
+
 /* Main heading */
 h1 {
   text-align: center;
@@ -38,6 +45,25 @@ h1 {
   margin-bottom: 20px;
   font-size: 2.5em;
 }
+
+/* General paragraph styling */
+p {
+  text-align: center;
+  background: linear-gradient(135deg, #2d6a4f 0%, #6a1b9a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Empty todo list message */
+.todo-list p {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* ==================== FORM ELEMENTS ==================== */
 
 /* Todo form layout */
 form {
@@ -79,6 +105,30 @@ select:focus {
   border-color: #2d6a4f;
 }
 
+/* Priority select dropdown */
+.priority-select {
+  min-width: 120px;
+}
+
+/* Date picker */
+.date-picker {
+  padding: 12px 15px;
+  border: 2px solid #e1bee7;
+  border-radius: 10px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+/* Date picker focus state */
+.date-picker:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+/* ==================== BUTTONS ==================== */
+
 /* Base button styling */
 button {
   padding: 12px 25px;
@@ -102,6 +152,8 @@ button:hover {
 button:active {
   transform: translateY(0);
 }
+
+/* ==================== FILTER BUTTONS ==================== */
 
 /* Filter buttons container */
 .filter-buttons {
@@ -136,381 +188,6 @@ button:active {
   opacity: 0.9;
 }
 
-/* Search container */
-.search-container {
-  position: relative;
-  margin-bottom: 15px;
-}
-
-/* Search input */
-.search-input {
-  width: 100%;
-  padding: 12px 40px 12px 15px;
-  border: 2px solid #d8f3dc;
-  border-radius: 10px;
-  font-size: 16px;
-  transition: border-color 0.3s;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #6a1b9a;
-}
-
-/* Clear search button */
-.clear-search {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  color: #999;
-  padding: 5px 10px;
-  font-size: 18px;
-  border-radius: 50%;
-}
-
-.clear-search:hover {
-  background: #f0f0f0;
-  color: #333;
-  transform: translateY(-50%) scale(1.1);
-}
-
-/* Sort container */
-.sort-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-/* Sort label */
-.sort-container label {
-  font-size: 14px;
-  color: #333;
-  font-weight: 500;
-}
-
-/* Sort select dropdown */
-.sort-select {
-  padding: 8px 12px;
-  border: 2px solid #d8f3dc;
-  border-radius: 10px;
-  font-size: 14px;
-  background: white;
-  cursor: pointer;
-  transition: border-color 0.3s;
-}
-
-.sort-select:focus {
-  outline: none;
-  border-color: #6a1b9a;
-}
-
-/* Priority select dropdown */
-.priority-select {
-  min-width: 120px;
-}
-
-/* Priority badge */
-.priority-badge {
-  padding: 5px 12px;
-  color: white;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* Priority colors */
-.priority-high {
-  background: #d32f2f;
-}
-
-.priority-medium {
-  background: #ff9800;
-}
-
-.priority-low {
-  background: #4caf50;
-}
-
-/* Date picker */
-.date-picker {
-  padding: 12px 15px;
-  border: 2px solid #e1bee7;
-  border-radius: 10px;
-  font-size: 16px;
-  background: white;
-  cursor: pointer;
-  transition: border-color 0.3s;
-}
-
-.date-picker:focus {
-  outline: none;
-  border-color: #2d6a4f;
-}
-
-/* Due date badge */
-.due-date-badge {
-  padding: 5px 12px;
-  background: #2196f3;
-  color: white;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* Overdue badge */
-.overdue-badge {
-  background: #ff5722;
-  animation: pulse 2s infinite;
-}
-
-/* Overdue todo item */
-.todo-item.overdue {
-  border-left: 4px solid #ff5722;
-}
-
-/* Pulse animation for overdue items */
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.7;
-  }
-}
-
-/* Todo list container */
-.todo-list {
-  margin-bottom: 10px;
-}
-
-/* Individual todo item */
-.todo-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 15px;
-  background: linear-gradient(135deg, #f1faee 0%, #faf5ff 100%);
-  border-radius: 10px;
-  margin-bottom: 10px;
-  transition: background 0.3s;
-  border: 1px solid #e1bee7;
-  flex-wrap: wrap;
-}
-
-/* Todo item hover effect */
-.todo-item:hover {
-  background: linear-gradient(135deg, #d8f3dc 0%, #f3e5f5 100%);
-}
-
-/* Checkbox styling */
-.todo-item input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-/* Todo text */
-.todo-item span:first-of-type {
-  flex: 1;
-  font-size: 16px;
-  color: #333;
-}
-
-/* Category badge */
-.category-badge {
-  padding: 5px 12px;
-  background: linear-gradient(135deg, #52b788 0%, #9c27b0 100%);
-  color: white;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* Delete button in todo item */
-.todo-item button {
-  padding: 8px 15px;
-  background: #d32f2f;
-  font-size: 14px;
-}
-
-/* Delete button hover */
-.todo-item button:hover {
-  background: #b71c1c;
-}
-
-/* Edit input in todo item */
-.edit-input {
-  flex: 1;
-  min-width: 150px;
-  padding: 8px 12px;
-  border: 2px solid #6a1b9a;
-  border-radius: 8px;
-  font-size: 14px;
-  background: #fff;
-}
-
-.edit-input:focus {
-  outline: none;
-  border-color: #2d6a4f;
-}
-
-/* Edit category select */
-.edit-category-select {
-  padding: 8px 10px;
-  border: 2px solid #6a1b9a;
-  border-radius: 8px;
-  font-size: 13px;
-  background: white;
-  cursor: pointer;
-  min-width: 90px;
-}
-
-.edit-category-select:focus {
-  outline: none;
-  border-color: #2d6a4f;
-}
-
-/* Edit priority select */
-.edit-priority-select {
-  padding: 8px 10px;
-  border: 2px solid #6a1b9a;
-  border-radius: 8px;
-  font-size: 13px;
-  background: white;
-  cursor: pointer;
-  min-width: 90px;
-}
-
-.edit-priority-select:focus {
-  outline: none;
-  border-color: #2d6a4f;
-}
-
-/* Edit button */
-.edit-btn {
-  padding: 8px 15px;
-  background: #2196f3;
-  font-size: 14px;
-}
-
-.edit-btn:hover {
-  background: #1976d2;
-}
-
-/* Save button */
-.save-btn {
-  padding: 8px 15px;
-  background: #4caf50;
-  font-size: 14px;
-}
-
-.save-btn:hover {
-  background: #388e3c;
-}
-
-/* Cancel button */
-.cancel-btn {
-  padding: 8px 15px;
-  background: #6c757d;
-  font-size: 14px;
-}
-
-.cancel-btn:hover {
-  background: #495057;
-  opacity: 1;
-}
-
-/* General paragraph styling */
-p {
-  text-align: center;
-  background: linear-gradient(135deg, #2d6a4f 0%, #6a1b9a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-/* Empty todo list message */
-.todo-list p {
-  opacity: 0.7;
-  font-style: italic;
-}
-
-/* Clear all todos button */
-.App>button:last-of-type {
-  display: block;
-  margin: 10px auto 0;
-  background: #d32f2f;
-}
-
-/* Clear all button hover */
-.App>button:last-of-type:hover {
-  background: #b71c1c;
-  opacity: 1;
-}
-
-/* Add category inline button */
-.add-category-inline-btn {
-  background: linear-gradient(135deg, #52b788 0%, #9c27b0 100%);
-  font-size: 14px;
-  padding: 10px 20px;
-}
-
-.add-category-inline-btn:hover {
-  opacity: 0.9;
-}
-
-/* New category inline form */
-.new-category-inline {
-  display: inline-flex;
-  gap: 5px;
-  align-items: center;
-}
-
-.category-inline-input {
-  padding: 8px 12px;
-  border: 2px solid #d8f3dc;
-  border-radius: 10px;
-  font-size: 14px;
-  width: 150px;
-}
-
-.category-inline-input:focus {
-  outline: none;
-  border-color: #6a1b9a;
-}
-
-.save-category-btn {
-  background: #52b788;
-  padding: 10px 15px;
-  font-size: 14px;
-  min-width: auto;
-}
-
-.save-category-btn:hover {
-  background: #40916c;
-}
-
-.cancel-category-btn {
-  background: #6c757d;
-  padding: 10px 15px;
-  font-size: 14px;
-  min-width: auto;
-}
-
-.cancel-category-btn:hover {
-  background: #495057;
-  opacity: 1;
-}
-
 /* Wrapper for filter button with delete option */
 .filter-button-wrapper {
   position: relative;
@@ -543,159 +220,368 @@ p {
   transform: scale(1.1);
 }
 
-/* Dark mode toggle button */
-.dark-mode-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
+/* ==================== ADD CATEGORY SECTION ==================== */
 
-.dark-mode-toggle button {
-  padding: 8px 15px;
+/* Add category inline button */
+.add-category-inline-btn {
+  background: linear-gradient(135deg, #52b788 0%, #9c27b0 100%);
   font-size: 14px;
+  padding: 10px 20px;
 }
 
-/* Dark mode body background */
-body.dark-mode {
-  background: linear-gradient(135deg, #6a1b9a 0%, #2d6a4f 100%);
-}
-
-/* Dark mode styles */
-.App.dark-mode {
-  background: #1a1a1a;
-  color: #e0e0e0;
-}
-
-.App.dark-mode h1 {
-  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.App.dark-mode input[type="text"],
-.App.dark-mode select {
-  background: #2d2d2d;
-  border-color: #6a1b9a;
-  color: #e0e0e0;
-}
-
-.App.dark-mode input[type="text"]::placeholder {
-  color: #999;
-}
-
-.App.dark-mode .date-picker {
-  background: #2d2d2d;
-  border-color: #6a1b9a;
-  color: #e0e0e0;
-  color-scheme: dark;
-}
-
-.App.dark-mode .search-input {
-  background: #2d2d2d;
-  border-color: #6a1b9a;
-  color: #e0e0e0;
-}
-
-.App.dark-mode .search-input::placeholder {
-  color: #999;
-}
-
-.App.dark-mode .clear-search {
-  color: #999;
-}
-
-.App.dark-mode .clear-search:hover {
-  background: #3d3d3d;
-  color: #e0e0e0;
-}
-
-.App.dark-mode .sort-container label {
-  color: #e0e0e0;
-}
-
-.App.dark-mode .sort-select {
-  background: #2d2d2d;
-  border-color: #6a1b9a;
-  color: #e0e0e0;
-}
-
-.App.dark-mode .edit-input {
-  background: #2d2d2d;
-  border-color: #6a1b9a;
-  color: #e0e0e0;
-}
-
-.App.dark-mode .edit-category-select {
-  background: #2d2d2d;
-  border-color: #6a1b9a;
-  color: #e0e0e0;
-}
-
-.App.dark-mode .edit-priority-select {
-  background: #2d2d2d;
-  border-color: #6a1b9a;
-  color: #e0e0e0;
-}
-
-.App.dark-mode .todo-item {
-  background: linear-gradient(135deg, #2d2d2d 0%, #2a2a2a 100%);
-  border-color: #6a1b9a;
-}
-
-.App.dark-mode .todo-item:hover {
-  background: linear-gradient(135deg, #3d3d3d 0%, #3a3a3a 100%);
-}
-
-.App.dark-mode .todo-item span:first-of-type {
-  color: #e0e0e0;
-}
-
-.App.dark-mode .category-badge {
-  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
-}
-
-.App.dark-mode .filter-buttons button {
-  background: linear-gradient(135deg, #2d2d2d 0%, #2a2a2a 100%);
-  color: #b19cd9;
-}
-
-.App.dark-mode .filter-buttons button:hover {
-  opacity: 0.8;
-}
-
-.App.dark-mode .filter-buttons button.active {
-  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
-  color: white;
-}
-
-.App.dark-mode p {
-  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.App.dark-mode .todo-list p {
-  opacity: 0.7;
-}
-
-.App.dark-mode .add-category-inline-btn {
-  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
-}
-
-.App.dark-mode .add-category-inline-btn:hover {
+/* Add category button hover */
+.add-category-inline-btn:hover {
   opacity: 0.9;
 }
 
-.App.dark-mode .category-inline-input {
-  background: #2d2d2d;
-  border-color: #6a1b9a;
-  color: #e0e0e0;
+/* New category inline form */
+.new-category-inline {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
 }
 
-.App.dark-mode .category-inline-input::placeholder {
+/* Category inline input field */
+.category-inline-input {
+  padding: 8px 12px;
+  border: 2px solid #d8f3dc;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 150px;
+}
+
+/* Category inline input focus */
+.category-inline-input:focus {
+  outline: none;
+  border-color: #6a1b9a;
+}
+
+/* Save category button */
+.save-category-btn {
+  background: #52b788;
+  padding: 10px 15px;
+  font-size: 14px;
+  min-width: auto;
+}
+
+/* Save category button hover */
+.save-category-btn:hover {
+  background: #40916c;
+}
+
+/* Cancel category button */
+.cancel-category-btn {
+  background: #6c757d;
+  padding: 10px 15px;
+  font-size: 14px;
+  min-width: auto;
+}
+
+/* Cancel category button hover */
+.cancel-category-btn:hover {
+  background: #495057;
+  opacity: 1;
+}
+
+/* ==================== SEARCH SECTION ==================== */
+
+/* Search container */
+.search-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+/* Search input */
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border: 2px solid #d8f3dc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* Search input focus */
+.search-input:focus {
+  outline: none;
+  border-color: #6a1b9a;
+}
+
+/* Clear search button */
+.clear-search {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
   color: #999;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+/* Clear search button hover */
+.clear-search:hover {
+  background: #f0f0f0;
+  color: #333;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* ==================== SORT SECTION ==================== */
+
+/* Sort container */
+.sort-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Sort label */
+.sort-container label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Sort select dropdown */
+.sort-select {
+  padding: 8px 12px;
+  border: 2px solid #d8f3dc;
+  border-radius: 10px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+/* Sort select focus */
+.sort-select:focus {
+  outline: none;
+  border-color: #6a1b9a;
+}
+
+/* ==================== TODO LIST ==================== */
+
+/* Todo list container */
+.todo-list {
+  margin-bottom: 10px;
+}
+
+/* Individual todo item */
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Reduced gap for better spacing in edit mode */
+  padding: 15px;
+  background: linear-gradient(135deg, #f1faee 0%, #faf5ff 100%);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: background 0.3s;
+  border: 1px solid #e1bee7;
+  flex-wrap: wrap;
+  /* Allow wrapping on smaller screens */
+}
+
+/* Todo item hover effect */
+.todo-item:hover {
+  background: linear-gradient(135deg, #d8f3dc 0%, #f3e5f5 100%);
+}
+
+/* Overdue todo item - red border on left */
+.todo-item.overdue {
+  border-left: 4px solid #ff5722;
+}
+
+/* Checkbox styling */
+.todo-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Todo text */
+.todo-item span:first-of-type {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+/* ==================== BADGES ==================== */
+
+/* Category badge */
+.category-badge {
+  padding: 5px 12px;
+  background: linear-gradient(135deg, #52b788 0%, #9c27b0 100%);
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Priority badge */
+.priority-badge {
+  padding: 5px 12px;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Priority colors */
+.priority-high {
+  background: #d32f2f;
+}
+
+.priority-medium {
+  background: #ff9800;
+}
+
+.priority-low {
+  background: #4caf50;
+}
+
+/* Due date badge */
+.due-date-badge {
+  padding: 5px 12px;
+  background: #2196f3;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Overdue badge - red with pulsing animation */
+.overdue-badge {
+  background: #ff5722;
+  animation: pulse 2s infinite;
+}
+
+/* Pulse animation for overdue items */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ==================== TODO ITEM BUTTONS ==================== */
+
+/* Delete button in todo item */
+.todo-item button {
+  padding: 8px 15px;
+  background: #d32f2f;
+  font-size: 14px;
+}
+
+/* Delete button hover */
+.todo-item button:hover {
+  background: #b71c1c;
+}
+
+/* Edit button */
+.edit-btn {
+  padding: 8px 15px;
+  background: #2196f3;
+  font-size: 14px;
+}
+
+/* Edit button hover */
+.edit-btn:hover {
+  background: #1976d2;
+}
+
+/* Save button */
+.save-btn {
+  padding: 8px 15px;
+  background: #4caf50;
+  font-size: 14px;
+}
+
+/* Save button hover */
+.save-btn:hover {
+  background: #388e3c;
+}
+
+/* Cancel button */
+.cancel-btn {
+  padding: 8px 15px;
+  background: #6c757d;
+  font-size: 14px;
+}
+
+/* Cancel button hover */
+.cancel-btn:hover {
+  background: #495057;
+  opacity: 1;
+}
+
+/* ==================== EDIT MODE INPUTS ==================== */
+
+/* Edit input in todo item */
+.edit-input {
+  flex: 1;
+  min-width: 150px;
+  /* Minimum width to prevent squishing */
+  padding: 8px 12px;
+  border: 2px solid #6a1b9a;
+  border-radius: 8px;
+  font-size: 14px;
+  /* Slightly smaller for better fit */
+  background: #fff;
+}
+
+/* Edit input focus */
+.edit-input:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+/* Edit category select */
+.edit-category-select {
+  padding: 8px 10px;
+  /* Reduced padding for better fit */
+  border: 2px solid #6a1b9a;
+  border-radius: 8px;
+  font-size: 13px;
+  /* Slightly smaller font */
+  background: white;
+  cursor: pointer;
+  min-width: 90px;
+  /* Minimum width */
+}
+
+/* Edit category select focus */
+.edit-category-select:focus {
+  outline: none;
+  border-color: #2d6a4f;
+}
+
+/* Edit priority select */
+.edit-priority-select {
+  padding: 8px 10px;
+  /* Reduced padding for better fit */
+  border: 2px solid #6a1b9a;
+  border-radius: 8px;
+  font-size: 13px;
+  /* Slightly smaller font */
+  background: white;
+  cursor: pointer;
+  min-width: 90px;
+  /* Minimum width */
+}
+
+/* Edit priority select focus */
+.edit-priority-select:focus {
+  outline: none;
+  border-color: #2d6a4f;
 }
 
 /* Edit date picker */
@@ -709,9 +595,139 @@ body.dark-mode {
   min-width: 130px;
 }
 
+/* Edit date picker focus */
 .edit-date-picker:focus {
   outline: none;
   border-color: #2d6a4f;
+}
+
+/* ==================== CLEAR ALL BUTTON ==================== */
+
+/* Clear all todos button */
+.App>button:last-of-type {
+  display: block;
+  margin: 10px auto 0;
+  background: #d32f2f;
+}
+
+/* Clear all button hover */
+.App>button:last-of-type:hover {
+  background: #b71c1c;
+  opacity: 1;
+}
+
+/* ==================== DARK MODE TOGGLE ==================== */
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Dark mode toggle button styling */
+.dark-mode-toggle button {
+  padding: 8px 15px;
+  font-size: 14px;
+}
+
+/* ==================== DARK MODE STYLES ==================== */
+
+/* Dark mode body background - gradient flipped */
+body.dark-mode {
+  background: linear-gradient(135deg, #6a1b9a 0%, #2d6a4f 100%);
+}
+
+/* Dark mode app container */
+.App.dark-mode {
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+/* Dark mode heading - gradient flipped */
+.App.dark-mode h1 {
+  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dark mode text inputs and selects */
+.App.dark-mode input[type="text"],
+.App.dark-mode select {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+/* Dark mode input placeholder */
+.App.dark-mode input[type="text"]::placeholder {
+  color: #999;
+}
+
+/* Dark mode date picker */
+.App.dark-mode .date-picker {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+  color-scheme: dark;
+  /* Makes the calendar popup dark */
+}
+
+/* Dark mode search input */
+.App.dark-mode .search-input {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+/* Dark mode search placeholder */
+.App.dark-mode .search-input::placeholder {
+  color: #999;
+}
+
+/* Dark mode clear search button */
+.App.dark-mode .clear-search {
+  color: #999;
+}
+
+/* Dark mode clear search button hover */
+.App.dark-mode .clear-search:hover {
+  background: #3d3d3d;
+  color: #e0e0e0;
+}
+
+/* Dark mode sort label */
+.App.dark-mode .sort-container label {
+  color: #e0e0e0;
+}
+
+/* Dark mode sort select */
+.App.dark-mode .sort-select {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+/* Dark mode edit input */
+.App.dark-mode .edit-input {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+/* Dark mode edit category select */
+.App.dark-mode .edit-category-select {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+/* Dark mode edit priority select */
+.App.dark-mode .edit-priority-select {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
 }
 
 /* Dark mode edit date picker */
@@ -720,4 +736,78 @@ body.dark-mode {
   border-color: #6a1b9a;
   color: #e0e0e0;
   color-scheme: dark;
+  /* Makes the calendar popup dark */
+}
+
+/* Dark mode todo items */
+.App.dark-mode .todo-item {
+  background: linear-gradient(135deg, #2d2d2d 0%, #2a2a2a 100%);
+  border-color: #6a1b9a;
+}
+
+/* Dark mode todo item hover */
+.App.dark-mode .todo-item:hover {
+  background: linear-gradient(135deg, #3d3d3d 0%, #3a3a3a 100%);
+}
+
+/* Dark mode todo text */
+.App.dark-mode .todo-item span:first-of-type {
+  color: #e0e0e0;
+}
+
+/* Dark mode category badge - gradient flipped */
+.App.dark-mode .category-badge {
+  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
+}
+
+/* Dark mode filter buttons */
+.App.dark-mode .filter-buttons button {
+  background: linear-gradient(135deg, #2d2d2d 0%, #2a2a2a 100%);
+  color: #b19cd9;
+}
+
+/* Dark mode filter buttons hover */
+.App.dark-mode .filter-buttons button:hover {
+  opacity: 0.8;
+}
+
+/* Dark mode active filter button - gradient flipped */
+.App.dark-mode .filter-buttons button.active {
+  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
+  color: white;
+}
+
+/* Dark mode paragraph - gradient flipped */
+.App.dark-mode p {
+  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dark mode empty list message */
+.App.dark-mode .todo-list p {
+  opacity: 0.7;
+}
+
+/* Dark mode add category button - gradient flipped */
+.App.dark-mode .add-category-inline-btn {
+  background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
+}
+
+/* Dark mode add category button hover */
+.App.dark-mode .add-category-inline-btn:hover {
+  opacity: 0.9;
+}
+
+/* Dark mode category inline input */
+.App.dark-mode .category-inline-input {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+/* Dark mode category inline input placeholder */
+.App.dark-mode .category-inline-input::placeholder {
+  color: #999;
 }
