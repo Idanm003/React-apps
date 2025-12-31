@@ -76,7 +76,7 @@ function App() {
   };
 
   const deleteCategory = (categoryToDelete) => {
-    if (['Personal', 'Work', 'Gaming'].includes(categoryToDelete)) {
+    if (['Personal', 'Work'].includes(categoryToDelete)) {
       alert("Cannot delete default categories!");
       return;
     }
