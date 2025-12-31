@@ -779,3 +779,164 @@ body.dark-mode {
 .App.dark-mode .category-inline-input::placeholder {
   color: #999;
 }
+
+/* For phones and small tablets (screens smaller than 768px) */
+@media (max-width: 768px) {
+  
+  /* Remove side padding on body */
+  body {
+    padding: 10px;
+  }
+  
+  /* Make app container full width with less padding */
+  .App {
+    max-width: 100%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+  
+  /* Smaller heading */
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+  
+  /* Stack form vertically instead of horizontally */
+  form {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Make all form inputs full width */
+  input[type="text"],
+  select,
+  .date-picker,
+  .priority-select {
+    width: 100%;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+  
+  /* Make buttons full width and bigger tap targets */
+  form button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+  
+  /* Stack filter buttons and make them bigger */
+  .filter-buttons {
+    gap: 8px;
+  }
+  
+  .filter-buttons button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  /* Make add category button full width */
+  .add-category-inline-btn {
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  /* Stack new category form */
+  .new-category-inline {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .category-inline-input {
+    width: 100%;
+  }
+  
+  .new-category-inline button {
+    width: 100%;
+  }
+  
+  /* Make search bigger */
+  .search-input {
+    font-size: 16px;
+  }
+  
+  /* Bigger sort controls */
+  .sort-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .sort-select {
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  /* Make todo items stack better */
+  .todo-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  /* Make todo text take full width */
+  .todo-item span:first-of-type {
+    width: 100%;
+  }
+  
+  /* Group badges together */
+  .category-badge,
+  .priority-badge,
+  .due-date-badge {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  /* Make todo buttons full width */
+  .todo-item button {
+    width: 100%;
+    padding: 12px;
+  }
+  
+  /* Stack edit mode inputs */
+  .edit-input,
+  .edit-category-select,
+  .edit-priority-select,
+  .edit-date-picker {
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  /* Make Clear All button bigger */
+  .App > button:last-of-type {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+  
+  /* Reposition dark mode toggle for mobile */
+  .dark-mode-toggle {
+    position: static;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .dark-mode-toggle button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+/* Extra small phones (screens smaller than 400px) */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.5em;
+  }
+  
+  .App {
+    padding: 10px;
+  }
+  
+  .filter-buttons button {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+}
