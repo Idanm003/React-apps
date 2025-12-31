@@ -9,15 +9,20 @@ function App() {
     const savedTodos = localStorage.getItem('todos');
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
+
   const [filter, setFilter] = useState('All');
   const [categories, setCategories] = useState(() => {
     const savedCategories = localStorage.getItem('categories');
     return savedCategories ? JSON.parse(savedCategories) : ['Personal', 'Work', 'Gaming'];
   });
+
   const [darkMode, setDarkMode] = useState(() => {
     const savedDarkMode = localStorage.getItem('darkMode');
     return savedDarkMode ? JSON.parse(savedDarkMode) : false;
   });
+
+  const [searchText, setSearchText] = useState('');
+  const [sortBy, setSortBy] = useState('dateCreated');
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -32,18 +37,19 @@ function App() {
   }, [darkMode]);
 
   useEffect(() => {
-  if (darkMode) {
-    document.body.classList.add('dark-mode');
-  } else {
-    document.body.classList.remove('dark-mode');
-  }
-}, [darkMode])
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
 
-  const addTodo = (text, category) => {
+  const addTodo = (text, category, priority) => {
     const newTodo = {
       id: Date.now(),
       text: text,
       category: category,
+      priority: priority,
       completed: false
     };
     setTodos([...todos, newTodo]);
@@ -95,9 +101,37 @@ function App() {
     localStorage.removeItem('todos');
   };
 
-  const filteredTodos = filter === 'All'
-    ? todos
-    : todos.filter(todo => todo.category === filter);
+  const filteredTodos = todos
+    .filter(todo => {
+      const matchesCategory = filter === 'All' || todo.category === filter;
+      const matchesSearch = todo.text.toLowerCase().includes(searchText.toLowerCase());
+      return matchesCategory && matchesSearch;
+    })
+
+    .sort((a, b) => {
+      switch (sortBy) {
+        case 'dateCreated':
+          return b.id - a.id;
+        case 'dateCreatedOldest':
+          return a.id - b.id;
+        case 'alphabeticalAZ':
+          return a.text.localeCompare(b.text);
+        case 'alphabeticalZA':
+          return b.text.localeCompare(a.text);
+        case 'priorityHighLow':
+          const priorityOrderHL = { 'High': 1, 'Medium': 2, 'Low': 3 };
+          return priorityOrderHL[a.priority] - priorityOrderHL[b.priority];
+        case 'priorityLowHigh':
+          const priorityOrderLH = { 'Low': 1, 'Medium': 2, 'High': 3 };
+          return priorityOrderLH[a.priority] - priorityOrderLH[b.priority];
+        case 'completed':
+          return a.completed - b.completed;
+        case 'completedFirst':
+          return b.completed - a.completed;
+        default:
+          return 0;
+      }
+    });
 
   return (
     <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
@@ -106,27 +140,60 @@ function App() {
           {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
         </button>
       </div>
+
       <h1>My To-Do List</h1>
+      
       <TodoForm
         addTodo={addTodo}
         categories={categories}
-        addCategory={addCategory}
       />
+
       <FilterButtons
         filter={filter}
         setFilter={setFilter}
         categories={categories}
         deleteCategory={deleteCategory}
+        addCategory={addCategory}
       />
+
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="🔍 Search todos"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className="search-input"
+        />
+
+        {searchText && (
+          <button onClick={() => setSearchText('')} className="clear-search">
+            ✕
+          </button>
+        )}
+      </div>
+
+      <div className="sort-container">
+        <label>Sort by: </label>
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="sort-select">
+          <option value="dateCreated">Date Created (Newest)</option>
+          <option value="dateCreatedOldest">Date Created (Oldest)</option>
+          <option value="alphabeticalAZ">Alphabetical (A-Z)</option>
+          <option value="alphabeticalZA">Alphabetical (Z-A)</option>
+          <option value="priorityHighLow">Priority (High to Low)</option>
+          <option value="priorityLowHigh">Priority (Low to High)</option>
+          <option value="completed">Status (Incomplete First)</option>
+          <option value="completedFirst">Status (Completed First)</option>
+        </select>
+      </div>
+
       <TodoList
         todos={filteredTodos}
         toggleComplete={toggleComplete}
         deleteTodo={deleteTodo}
       />
+
       <p>Todos: {todos.length}</p>
-      <button onClick={clearAllTodos}>
-        Clear All Todos
-      </button>
+      <button onClick={clearAllTodos}>Clear All Todos</button>
     </div>
   );
 }

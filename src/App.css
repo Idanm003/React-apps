@@ -15,7 +15,7 @@ body {
 
 /* Main app container - white card in center */
 .App {
-  max-width: 600px;
+  max-width: 700px;
   margin: 50px auto;
   background: white;
   border-radius: 20px;
@@ -136,6 +136,105 @@ button:active {
   opacity: 0.9;
 }
 
+/* Search container */
+.search-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+/* Search input */
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border: 2px solid #d8f3dc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #6a1b9a;
+}
+
+/* Clear search button */
+.clear-search {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #999;
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 50%;
+}
+
+.clear-search:hover {
+  background: #f0f0f0;
+  color: #333;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Sort container */
+.sort-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Sort label */
+.sort-container label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Sort select dropdown */
+.sort-select {
+  padding: 8px 12px;
+  border: 2px solid #d8f3dc;
+  border-radius: 10px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #6a1b9a;
+}
+
+/* Priority select dropdown */
+.priority-select {
+  min-width: 120px;
+}
+
+/* Priority badge */
+.priority-badge {
+  padding: 5px 12px;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Priority colors */
+.priority-high {
+  background: #d32f2f;
+}
+
+.priority-medium {
+  background: #ff9800;
+}
+
+.priority-low {
+  background: #4caf50;
+}
+
 /* Todo list container */
 .todo-list {
   margin-bottom: 10px;
@@ -225,43 +324,56 @@ p {
   opacity: 1;
 }
 
-/* Add category section container */
-.add-category-section {
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-/* Add category button */
-.add-category-btn {
+/* Add category inline button */
+.add-category-inline-btn {
   background: linear-gradient(135deg, #52b788 0%, #9c27b0 100%);
   font-size: 14px;
   padding: 10px 20px;
 }
 
-/* Add category button hover */
-.add-category-btn:hover {
+.add-category-inline-btn:hover {
   opacity: 0.9;
 }
 
-/* New category form layout */
-.new-category-form {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
+/* New category inline form */
+.new-category-inline {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
 }
 
-/* New category input field */
-.new-category-form input {
-  flex: 0 1 300px;
+.category-inline-input {
+  padding: 8px 12px;
+  border: 2px solid #d8f3dc;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 150px;
 }
 
-/* Cancel button in new category form */
-.new-category-form button:last-child {
+.category-inline-input:focus {
+  outline: none;
+  border-color: #6a1b9a;
+}
+
+.save-category-btn {
+  background: #52b788;
+  padding: 10px 15px;
+  font-size: 14px;
+  min-width: auto;
+}
+
+.save-category-btn:hover {
+  background: #40916c;
+}
+
+.cancel-category-btn {
   background: #6c757d;
+  padding: 10px 15px;
+  font-size: 14px;
+  min-width: auto;
 }
 
-/* Cancel button hover */
-.new-category-form button:last-child:hover {
+.cancel-category-btn:hover {
   background: #495057;
   opacity: 1;
 }
@@ -339,6 +451,35 @@ body.dark-mode {
   color: #999;
 }
 
+.App.dark-mode .search-input {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+.App.dark-mode .search-input::placeholder {
+  color: #999;
+}
+
+.App.dark-mode .clear-search {
+  color: #999;
+}
+
+.App.dark-mode .clear-search:hover {
+  background: #3d3d3d;
+  color: #e0e0e0;
+}
+
+.App.dark-mode .sort-container label {
+  color: #e0e0e0;
+}
+
+.App.dark-mode .sort-select {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
 .App.dark-mode .todo-item {
   background: linear-gradient(135deg, #2d2d2d 0%, #2a2a2a 100%);
   border-color: #6a1b9a;
@@ -381,10 +522,20 @@ body.dark-mode {
   opacity: 0.7;
 }
 
-.App.dark-mode .add-category-btn {
+.App.dark-mode .add-category-inline-btn {
   background: linear-gradient(135deg, #9c27b0 0%, #52b788 100%);
 }
 
-.App.dark-mode .add-category-btn:hover {
+.App.dark-mode .add-category-inline-btn:hover {
   opacity: 0.9;
+}
+
+.App.dark-mode .category-inline-input {
+  background: #2d2d2d;
+  border-color: #6a1b9a;
+  color: #e0e0e0;
+}
+
+.App.dark-mode .category-inline-input::placeholder {
+  color: #999;
 }
