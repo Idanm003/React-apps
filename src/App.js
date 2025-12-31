@@ -65,7 +65,12 @@ function App() {
 
   const editTodo = (id, newText, newCategory, newPriority, newDueDate) => {
     setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, text: newText, category: newCategory, priority: newPriority, dueDate: newDueDate } : todo
+      todo.id === id ? { ...todo,
+          text: newText,
+          category: newCategory,
+          priority: newPriority,
+          dueDate: newDueDate }
+         : todo
     ));
   };
 
