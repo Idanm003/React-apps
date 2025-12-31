@@ -12,7 +12,11 @@ function App() {
   const [filter, setFilter] = useState('All');
   const [categories, setCategories] = useState(() => {
     const savedCategories = localStorage.getItem('categories');
-    return savedCategories ? JSON.parse(savedCategories) : ['Personal', 'Work',];
+    return savedCategories ? JSON.parse(savedCategories) : ['Personal', 'Work', 'Gaming'];
+  });
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedDarkMode = localStorage.getItem('darkMode');
+    return savedDarkMode ? JSON.parse(savedDarkMode) : false;
   });
 
   useEffect(() => {
@@ -22,6 +26,18 @@ function App() {
   useEffect(() => {
     localStorage.setItem('categories', JSON.stringify(categories));
   }, [categories]);
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  useEffect(() => {
+  if (darkMode) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
+}, [darkMode])
 
   const addTodo = (text, category) => {
     const newTodo = {
@@ -50,7 +66,7 @@ function App() {
   };
 
   const deleteCategory = (categoryToDelete) => {
-    if (['Personal', 'Work',].includes(categoryToDelete)) {
+    if (['Personal', 'Work', 'Gaming'].includes(categoryToDelete)) {
       alert("Cannot delete default categories!");
       return;
     }
@@ -70,6 +86,10 @@ function App() {
     }
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   const clearAllTodos = () => {
     setTodos([]);
     localStorage.removeItem('todos');
@@ -80,7 +100,12 @@ function App() {
     : todos.filter(todo => todo.category === filter);
 
   return (
-    <div className="App">
+    <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
+      <div className="dark-mode-toggle">
+        <button onClick={toggleDarkMode}>
+          {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+        </button>
+      </div>
       <h1>My To-Do List</h1>
       <TodoForm
         addTodo={addTodo}
@@ -99,7 +124,9 @@ function App() {
         deleteTodo={deleteTodo}
       />
       <p>Todos: {todos.length}</p>
-      <button onClick={clearAllTodos}>Clear All Todos</button>
+      <button onClick={clearAllTodos}>
+        Clear All Todos
+      </button>
     </div>
   );
 }
