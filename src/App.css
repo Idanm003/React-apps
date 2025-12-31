@@ -1,38 +1,285 @@
-.App {
-  text-align: center;
+/* Reset default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* Body styling with gradient background */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #039b68 0%, #764ba2 100%);
   min-height: 100vh;
+  padding: 20px;
+}
+
+/* Main app container - white card in center */
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Main heading */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+}
+
+/* Todo form layout */
+form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+/* Text input field */
+input[type="text"] {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* Input field focus state */
+input[type="text"]:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Category dropdown */
+select {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+/* Dropdown focus state */
+select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Base button styling */
+button {
+  padding: 12px 25px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+/* Button hover effect */
+button:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+/* Button click effect */
+button:active {
+  transform: translateY(0);
+}
+
+/* Filter buttons container */
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: wrap;
+}
+
+/* Individual filter button styling */
+.filter-buttons button {
+  background: #f0f0f0;
+  color: #333;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* Active filter button */
+.filter-buttons button.active {
+  background: #667eea;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Filter button hover */
+.filter-buttons button:hover {
+  background: #e0e0e0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Active filter button hover */
+.filter-buttons button.active:hover {
+  background: #5568d3;
+}
+
+/* Todo list container */
+.todo-list {
+  margin-bottom: 20px;
+}
+
+/* Individual todo item */
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: background 0.3s;
+}
+
+/* Todo item hover effect */
+.todo-item:hover {
+  background: #f0f0f0;
+}
+
+/* Checkbox styling */
+.todo-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Todo text */
+.todo-item span:first-of-type {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Category badge */
+.category-badge {
+  padding: 5px 12px;
+  background: #667eea;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Delete button in todo item */
+.todo-item button {
+  padding: 8px 15px;
+  background: #ff4757;
+  font-size: 14px;
+}
+
+/* Delete button hover */
+.todo-item button:hover {
+  background: #e63946;
+}
+
+/* General paragraph styling */
+p {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+/* Empty todo list message */
+.todo-list p {
+  color: #999;
+  font-style: italic;
+}
+
+/* Clear all todos button */
+.App > button:last-of-type {
+  display: block;
+  margin: 20px auto 0;
+  background: #ff4757;
+}
+
+/* Clear all button hover */
+.App > button:last-of-type:hover {
+  background: #e63946;
+}
+
+/* Add category section container */
+.add-category-section {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Add category button */
+.add-category-btn {
+  background: #48bb78;
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
+/* Add category button hover */
+.add-category-btn:hover {
+  background: #38a169;
+}
+
+/* New category form layout */
+.new-category-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* New category input field */
+.new-category-form input {
+  flex: 0 1 300px;
+}
+
+/* Cancel button in new category form */
+.new-category-form button:last-child {
+  background: #718096;
+}
+
+/* Cancel button hover */
+.new-category-form button:last-child:hover {
+  background: #4a5568;
+}
+
+/* Wrapper for filter button with delete option */
+.filter-button-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Delete category button (small X) */
+.delete-category-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: #ff4757;
+  color: white;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+/* Delete category button hover */
+.delete-category-btn:hover {
+  background: #e63946;
+  transform: scale(1.1);
 }
